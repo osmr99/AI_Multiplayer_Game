@@ -25,12 +25,14 @@ public class StartButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        transform.DOScale(originalScale + addedScale, time);
+        if(button.enabled)
+            transform.DOScale(originalScale + addedScale, time);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        transform.DOScale(originalScale, time);
+        if(button.enabled)
+            transform.DOScale(originalScale, time);
     }
 
     public void Click()
