@@ -24,8 +24,8 @@ public class Score : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.G)) // Here will be when the player collects a dot (this is just a template)
-            updateScore();
+        //if(Input.GetKeyDown(KeyCode.G)) // Here will be when the player collects a dot (this is just a template)
+            //updateScore();
     }
 
     public void updateScore()

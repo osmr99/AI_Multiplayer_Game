@@ -214,8 +214,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<<< HEAD:Assets/Scenes/SampleScene1.unity
-========
 --- !u!1 &792163017
 GameObject:
   m_ObjectHideFlags: 0
@@ -373,13 +371,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
->>>>>>>> Logic-Setup:Assets/Scenes/PhysicsTest.unity
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 519420032}
-<<<<<<<< HEAD:Assets/Scenes/SampleScene1.unity
-========
   - {fileID: 792163020}
->>>>>>>> Logic-Setup:Assets/Scenes/PhysicsTest.unity

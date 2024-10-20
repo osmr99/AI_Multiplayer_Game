@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SocialPlatforms.Impl;
 
 public class PowerupUI : MonoBehaviour
@@ -39,8 +40,8 @@ public class PowerupUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-            rngPowerup();
+        //if (Input(KeyCode.Space))
+            //rngPowerup();
     }
 
     void rngPowerup()
