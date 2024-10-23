@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour
+public class Movement : MonoBehaviour
 {
-    public float speed = 1;
+    [SerializeField] float speed = 1;
     Rigidbody2D rb;
     Vector2 movement;
     public DotSpawner spawner;
