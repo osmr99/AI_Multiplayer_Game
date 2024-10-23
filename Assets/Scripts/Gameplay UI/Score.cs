@@ -8,11 +8,11 @@ using UnityEngine.InputSystem;
 public class Score : MonoBehaviour
 {
     [SerializeField] TMP_Text score;
-    [SerializeField] float startingFontSize;
-    [SerializeField] float startingScale;
-    [SerializeField] int dotScore;
+    float startingFontSize = 75;
+    float startingScale = 1;
+    int dotScore = 50;
+    public ScoreScriptable scoreAmount;
     Vector3 scaleChange;
-    int scoreAmount = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -30,8 +30,8 @@ public class Score : MonoBehaviour
 
     public void updateScore()
     {
-        scoreAmount += dotScore;
-        score.text = "Score: " + scoreAmount.ToString();
+        scoreAmount.currentScore += dotScore;
+        score.text = "Score: " + scoreAmount.currentScore;
         score.transform.localScale = scaleChange;
         score.transform.DOScale(startingScale, 0.2f).ForceInit(); ;
     }    

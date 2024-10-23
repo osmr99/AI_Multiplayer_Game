@@ -270,9 +270,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: {fileID: 390424944}
-  startingFontSize: 75
-  startingScale: 1
-  dotScore: 50
+  scoreAmount: {fileID: 11400000, guid: 7141c03ce2329174381759b69280d513, type: 2}
 --- !u!1 &761428037
 GameObject:
   m_ObjectHideFlags: 0

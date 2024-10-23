@@ -593,7 +593,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 1301145254}
-  text: {fileID: 0}
   addedScale: 0.45
   time: 0.35
 --- !u!1 &1308677207

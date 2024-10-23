@@ -9,7 +9,7 @@ using DG.Tweening;
 public class StartButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] Button button;
-    [SerializeField] TMP_Text text;
+    //[SerializeField] TMP_Text text;
     [SerializeField] float addedScale;
     [SerializeField] float time;
     int strength = 10;
@@ -45,8 +45,7 @@ public class StartButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     {
         button.enabled = false;
         yield return new WaitForSeconds(0.5f);
-        Debug.Log("(On main) Loading gameplay and its UI...");
-        //SceneManager.LoadSceneAsync("Gameplay UI");
+        SceneHandler.LoadGame();
     }
 
 }
