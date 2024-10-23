@@ -4,6 +4,7 @@ using UnityEngine;
 public class Powerups : MonoBehaviour
 {
     [SerializeField] PlayerMovement player;
+    [SerializeField] GameObject playerSize;
     float playerspeed;
 
     private void Start()
@@ -20,6 +21,11 @@ public class Powerups : MonoBehaviour
                 StartCoroutine(SpeedBoost());
             }
         }
+
+        if(Input.GetKeyDown (KeyCode.Q))
+        {
+            StartCoroutine(Growth());
+        }
     }
     
     IEnumerator SpeedBoost()
@@ -33,16 +39,25 @@ public class Powerups : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(10);
     }
+    IEnumerator Growth()
+    {
+        yield return new WaitForSecondsRealtime(1);
+        playerSize.transform.localScale += new Vector3(0.1f, 0.1f, 0f);
+        yield return new WaitForSecondsRealtime(1);
+        playerSize.transform.localScale += new Vector3(0.1f, 0.1f, 0f);
+        yield return new WaitForSecondsRealtime(1);
+        playerSize.transform.localScale += new Vector3(0.1f, 0.1f, 0f);
+        yield return new WaitForSecondsRealtime(1);
+        playerSize.transform.localScale += new Vector3(0.1f, 0.1f, 0f);
+        yield return new WaitForSecondsRealtime(1);
+        playerSize.transform.localScale += new Vector3(0.1f, 0.1f, 0f);
+    }
 
     void Shockwave()
     {
 
     }
 
-    void Growth()
-    {
-
-    }
 
     void SplitShield()
     {
