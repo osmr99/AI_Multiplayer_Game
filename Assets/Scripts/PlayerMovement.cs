@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Movement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] float speed = 1;
+    public float speed = 1;
     Rigidbody2D rb;
     Vector2 movement;
     private void Start()
