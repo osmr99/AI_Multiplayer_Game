@@ -28,13 +28,13 @@ public class DotSpawner : MonoBehaviour
     {
         if (dotPool.Count > 0)
         {
-            x = UnityEngine.Random.Range(-6, 6);
-            y = UnityEngine.Random.Range(-4, 4);
+            x = UnityEngine.Random.Range(-25, 25);
+            y = UnityEngine.Random.Range(-25, 25);
             var current = dotPool.Dequeue();
             current.gameObject.SetActive(true);
             current.gameObject.transform.position = new Vector2(x, y);
         }
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(0.5f);
         StartCoroutine(Spawn());
     }
 }
