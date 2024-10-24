@@ -2,6 +2,7 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SocialPlatforms.Impl;
@@ -40,38 +41,80 @@ public class PowerupUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (Input(KeyCode.Space))
-            //rngPowerup();
+        if(UnityEngine.Input.GetKeyDown(KeyCode.P))
+        {
+            ChangeColor(Color.green);
+            ChangeText("Speed Boost");
+            StartCoroutine(SpeedBoostUI());
+        }
+
+        if (UnityEngine.Input.GetKeyDown(KeyCode.Q))
+        {
+            ChangeColor(Color.yellow);
+            ChangeText("Growth");
+            StartCoroutine(GrowthUI());
+        }
+
     }
 
-    void rngPowerup()
+    void RngPowerup()
     {
         currentPowerup = (PowerupList)Random.Range(0, 5);
         switch(currentPowerup)
         {
             case PowerupList.SPLIT_SHIELD:
-                changeColor(Color.blue); changeText("Split Shield"); break;
+                ChangeColor(Color.blue); ChangeText("Split Shield"); break;
             case PowerupList.MAGNET:
-                changeColor(Color.red); changeText("Magnet"); break;
+                ChangeColor(Color.red); ChangeText("Magnet"); break;
             case PowerupList.SPEED_BOOST:
-                changeColor(Color.green); changeText("Speed Boost"); break;
+                ChangeColor(Color.green); ChangeText("Speed Boost"); break;
             case PowerupList.SHOCKWAVE:
-                changeColor(Color.magenta); changeText("Shockwave"); break;
+                ChangeColor(Color.magenta); ChangeText("Shockwave"); break;
             case PowerupList.GROWTH:
-                changeColor(Color.yellow); changeText("Growth"); break;
+                ChangeColor(Color.yellow); ChangeText("Growth"); break;
         }
     }
 
-    void changeColor(Color targetColor)
+    void ChangeColor(Color targetColor)
     {
         powerup.color = Color.white;
         powerup.DOColor(targetColor, time);
     }
 
-    void changeText(string text)
+    void ChangeText(string text)
     {
         powerup.text = "Powerup: " + text;
         powerup.transform.localScale = scaleChange;
         powerup.transform.DOScale(startingScale, time).ForceInit();
+    }
+
+    void ResetText()
+    {
+        powerup.text = "Powerup: None";
+        powerup.DOColor(Color.white, time);
+    }
+
+    IEnumerator SpeedBoostUI()
+    {
+        float timeRemaining = 10.0f;
+        for(int i = 0; i < 100; i++)
+        {
+            powerup.text = "Powerup: Speed Boost (" + timeRemaining.ToString("F1") + "s)";
+            timeRemaining -= 0.1f;
+            yield return new WaitForSeconds(0.1f);
+        }
+        ResetText();
+    }
+
+    IEnumerator GrowthUI()
+    {
+        float timeRemaining = 10.0f;
+        for (int i = 0; i < 100; i++)
+        {
+            powerup.text = "Powerup: Growth (" + timeRemaining.ToString("F1") + "s)";
+            timeRemaining -= 0.1f;
+            yield return new WaitForSeconds(0.1f);
+        }
+        ResetText();
     }
 }
