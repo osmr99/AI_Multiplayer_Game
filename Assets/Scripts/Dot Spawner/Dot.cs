@@ -12,7 +12,7 @@ public class Dot : MonoBehaviour
     // Start is called before the first frame update
     void OnEnable()
     {
-        num = UnityEngine.Random.Range(0, colors.colors.Count);
+        num = Random.Range(0, colors.colors.Count);
         rngColor = colors.colors[num];
         rngColor.a = 1;
         dot.color = rngColor;

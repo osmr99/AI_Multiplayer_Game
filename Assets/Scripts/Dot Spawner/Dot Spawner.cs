@@ -30,8 +30,8 @@ public class DotSpawner : MonoBehaviour
     {
         if (dotPool.Count > 0)
         {
-            myX = UnityEngine.Random.Range(-x,x+1);
-            myY = UnityEngine.Random.Range(-y,y+1);
+            myX = Random.Range(-x,x+1);
+            myY = Random.Range(-y,y+1);
             var current = dotPool.Dequeue();
             current.gameObject.SetActive(true);
             current.gameObject.transform.position = new Vector2(myX, myY);
