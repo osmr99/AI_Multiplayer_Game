@@ -97,7 +97,7 @@ public class PowerupUI : MonoBehaviour
     IEnumerator SpeedBoostUI()
     {
         float timeRemaining = 10.0f;
-        for(int i = 0; i < 100; i++)
+        for(int i = 0; i <= 100; i++)
         {
             powerup.text = "Powerup: Speed Boost (" + timeRemaining.ToString("F1") + "s)";
             timeRemaining -= 0.1f;
@@ -109,7 +109,7 @@ public class PowerupUI : MonoBehaviour
     IEnumerator GrowthUI()
     {
         float timeRemaining = 5.0f;
-        for (int i = 0; i < 50; i++)
+        for (int i = 0; i <= 50; i++)
         {
             powerup.text = "Powerup: Growth (" + timeRemaining.ToString("F1") + "s)";
             timeRemaining -= 0.1f;
