@@ -12,8 +12,8 @@ public class SceneHandler : MonoBehaviour
 
     private void Awake()
     {
-        player = GameObject.Find("Player0");
-        dotSpawner = GameObject.Find("Dot Spawner");
+        player = GameObject.Find("Player Prefab");
+        dotSpawner = GameObject.Find("Dot Spawner 2");
         player.SetActive(false);
         dotSpawner.SetActive(false);
     }
