@@ -84,22 +84,54 @@ public class DirectorAI : MonoBehaviour
             // 0 strongest, 1 weakest
             if (theScores[0] == playerScoresByOrder[0]) // Player 1's score;
             {
-                player1.GetComponentInChildren<Powerups>().StartGrowth();
-                player1UI.GetComponentInChildren<PowerupUI>().StartGrowth();
-                player1UI.GetComponentInChildren<Score>().StartGrowth();
-                player2.GetComponentInChildren<Powerups>().StartSpeedBoost();
-                player2UI.GetComponentInChildren<PowerupUI>().StartSpeedBoost();
-                Debug.Log(1);
+                PlayerTwoSpeed();
+                PlayerOneGrowth();
             }
             else
             {
-                player1.GetComponentInChildren<Powerups>().StartSpeedBoost();
-                player1UI.GetComponentInChildren<PowerupUI>().StartSpeedBoost();
-                player2.GetComponentInChildren<Powerups>().StartGrowth();
-                player2UI.GetComponentInChildren<PowerupUI>().StartGrowth();
-                player2UI.GetComponentInChildren<Score>().StartGrowth();
-                Debug.Log(2);
+                PlayerOneSpeed();
+                PlayerTwoGrowth();
             }
         }
+    }
+
+    void PlayerOneGrowth()
+    {
+        player1.GetComponentInChildren<Powerups>().StartGrowth();
+        player1UI.GetComponentInChildren<PowerupUI>().StartGrowth();
+        player1UI.GetComponentInChildren<Score>().StartGrowth();
+    }
+
+    void PlayerTwoGrowth()
+    {
+        player2.GetComponentInChildren<Powerups>().StartGrowth();
+        player2UI.GetComponentInChildren<PowerupUI>().StartGrowth();
+        player2UI.GetComponentInChildren<Score>().StartGrowth();
+    }
+
+    void PlayerThreeGrowth()
+    {
+        player3.GetComponentInChildren<Powerups>().StartGrowth();
+        player3UI.GetComponentInChildren<PowerupUI>().StartGrowth();
+        player3UI.GetComponentInChildren<PowerupUI>().StartGrowth();
+    }
+
+    void PlayerFourGrowth()
+    {
+        player4.GetComponentInChildren<Powerups>().StartGrowth();
+        player4UI.GetComponentInChildren<PowerupUI>().StartGrowth();
+        player4UI.GetComponentInChildren<PowerupUI>().StartGrowth();
+    }
+
+    void PlayerOneSpeed()
+    {
+        player1.GetComponentInChildren<Powerups>().StartSpeedBoost();
+        player1UI.GetComponentInChildren<PowerupUI>().StartSpeedBoost();
+    }
+
+    void PlayerTwoSpeed()
+    {
+        player2.GetComponentInChildren<Powerups>().StartSpeedBoost();
+        player2UI.GetComponentInChildren<PowerupUI>().StartSpeedBoost();
     }
 }
