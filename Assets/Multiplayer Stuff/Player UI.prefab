@@ -113,8 +113,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294966272
-  m_fontColor: {r: 0, g: 0.9882353, b: 1, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -248,8 +248,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294966272
-  m_fontColor: {r: 0, g: 0.9893317, b: 1, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -322,7 +322,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: {fileID: 8293154305290075044}
   size: {fileID: 7416004985128986831}
-  scoreAmount: {fileID: 11400000, guid: 7141c03ce2329174381759b69280d513, type: 2}
+  textColor: {fileID: 0}
+  stats: {fileID: 0}
+  powerupUI: {fileID: 0}
 --- !u!1 &8231958701020496364
 GameObject:
   m_ObjectHideFlags: 0
@@ -551,3 +553,4 @@ MonoBehaviour:
   strength: 10
   vibrato: 1
   randomness: 100
+  allowPowerup: 1

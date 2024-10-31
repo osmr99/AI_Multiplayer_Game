@@ -9,6 +9,7 @@ public class Score : MonoBehaviour
 {
     [SerializeField] TMP_Text score;
     [SerializeField] TMP_Text size;
+    [SerializeField] TMP_Text playerText;
     [SerializeField] Dotcolors textColor;
     float startingFontSize = 35;
     float startingScale = 1;
@@ -25,6 +26,7 @@ public class Score : MonoBehaviour
         scaleChange = new Vector3(1.075f, 1.075f, 1.075f);
         score.color = textColor.colors[0];
         size.color = textColor.colors[0];
+        playerText.color = textColor.colors[0];
         sceneHandler = FindAnyObjectByType<SceneHandler2>();
     }
 
@@ -93,6 +95,6 @@ public class Score : MonoBehaviour
         }
         score.text = "Score: 0";
         size.text = "0";
-        yield return new WaitForSeconds(0.021f);
+        yield return new WaitForSeconds(0.03f);
     }
 }

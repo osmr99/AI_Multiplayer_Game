@@ -38,7 +38,7 @@ public class DirectorAI : MonoBehaviour
 
     IEnumerator TheStartTwo()
     {
-        yield return new WaitForSeconds(0.021f);
+        yield return new WaitForSeconds(0.05f);
         text = GameObject.Find("Power Up Cooldown").GetComponentInChildren<TMP_Text>();
         player1UI = GameObject.Find("Player 1 UI");
         player2UI = GameObject.Find("Player 2 UI");
@@ -49,26 +49,26 @@ public class DirectorAI : MonoBehaviour
         player3UI.SetActive(false);
         player4UI.SetActive(false);
         sceneHandler = FindAnyObjectByType<SceneHandler2>();
-        for(int i = 1; i <= sceneHandler.myList.Length; i++)
+        for(int i = 1; i <= sceneHandler.myArray.Length; i++)
         {
-            if(i == 1 && sceneHandler.myList[i-1].gameObject.name != "Player Prefab")
+            if(i == 1 && sceneHandler.myArray[i-1].gameObject.name != "Player Prefab")
             {
-                player1 = sceneHandler.myList[i-1];
+                player1 = sceneHandler.myArray[i-1];
                 numOfPlayers = 1;
             }
-            else if(i == 2 && sceneHandler.myList[i-1].gameObject.name != "Player Prefab")
+            else if(i == 2 && sceneHandler.myArray[i-1].gameObject.name != "Player Prefab")
             {
-                player2 = sceneHandler.myList[i-1];
+                player2 = sceneHandler.myArray[i-1];
                 numOfPlayers = 2;
             }
-            else if(i == 3 && sceneHandler.myList[i-1].gameObject.name != "Player Prefab")
+            else if(i == 3 && sceneHandler.myArray[i-1].gameObject.name != "Player Prefab")
             {
-                player3 = sceneHandler.myList[i-1];
+                player3 = sceneHandler.myArray[i-1];
                 numOfPlayers = 3;
             }
-            else if (i == 4 && sceneHandler.myList[i-1].gameObject.name != "Player Prefab")
+            else if (i == 4 && sceneHandler.myArray[i-1].gameObject.name != "Player Prefab")
             {
-                player4 = sceneHandler.myList[i-1];
+                player4 = sceneHandler.myArray[i-1];
                 numOfPlayers = 4;
             }
         }
