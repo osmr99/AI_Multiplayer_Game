@@ -11,10 +11,10 @@ public class SceneHandler2 : MonoBehaviour
     static GameObject player3;
     static GameObject player4;
     static GameObject directorAI;
-    public ScoreScriptable score1;
-    public ScoreScriptable score2;
-    public ScoreScriptable score3;
-    public ScoreScriptable score4;
+    public ScoreScriptable stats1;
+    public ScoreScriptable stats2;
+    public ScoreScriptable stats3;
+    public ScoreScriptable stats4;
     // Start is called before the first frame update
 
     private void Awake()
@@ -33,10 +33,15 @@ public class SceneHandler2 : MonoBehaviour
     }
     void Start()
     {
-        score1.currentScore = 0;
-        score2.currentScore = 0;
-        score3.currentScore = 0;
-        score4.currentScore = 0;
+        stats1.currentScore = 0;
+        stats2.currentScore = 0;
+        stats3.currentScore = 0;
+        stats4.currentScore = 0;
+        stats1.currentSize = 0;
+        stats2.currentSize = 0;
+        stats3.currentSize = 0;
+        stats4.currentSize = 0;
+        stats1.currentSize = 0;
         SceneManager.LoadSceneAsync("Main Menu UI", LoadSceneMode.Additive);
     }
 

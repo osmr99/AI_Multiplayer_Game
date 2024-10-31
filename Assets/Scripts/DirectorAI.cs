@@ -5,10 +5,15 @@ using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using DG.Tweening;
 
 public class DirectorAI : MonoBehaviour
 {
+    // Director AI TLDR - Biggest player gets speedboost, the others get growth
+
     public ScoreScriptable[] scores;
+    public Dotcolors myColors;
+    Color targetColor;
     TMP_Text text;
     public int[] theScores;
     public int[] playerScoresByOrder;
@@ -22,8 +27,6 @@ public class DirectorAI : MonoBehaviour
     GameObject player2;
     GameObject player3;
     GameObject player4;
-
-    public int test;
 
     public void TheStart()
     {
@@ -61,11 +64,12 @@ public class DirectorAI : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         }
         PowerUpGiver();
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1);
+        ChangeColor(myColors.colors[0]);
         StartCoroutine(powerUpGiverUI());
     }
 
-    void PowerUpGiver() // With Director AI
+    void PowerUpGiver() // Director AI
     {
         int count = 0;
         for(int i = 0; i < scores.Length; i++) // First, count the amount of players playing.
@@ -87,26 +91,28 @@ public class DirectorAI : MonoBehaviour
     IEnumerator PowerUpGiverTwo()
     {
         yield return new WaitForSeconds(0.05f);
-        // Strongest gets speedboost, weaker gets growth
-        if (theScores.Length == 2) // 2 Players playing
+        // Director AI TLDR - Biggest player gets speedboost, the others get growth
+        if (theScores.Length == 2 && theScores[0] != theScores[1]) // 2 Players playing
         {
             // 1 strongest, 0 weakest
             if (theScores[0] == playerScoresByOrder[0]) // Player 1's score;
             {
                 PlayerOneGrowth();
                 PlayerTwoSpeed();
-                Debug.Log("case 1");
             }
-            else
+            else if (theScores[0] == playerScoresByOrder[1]) // Player's 2 score
             {
                 PlayerOneSpeed();
                 PlayerTwoGrowth();
-                Debug.Log("case 2");
+            }
+            else
+            {
+                FailedCondition(); // If there's only 1 player on screen;
             }
         }
-        if (theScores.Length == 3) // 3 Players playing
+        else if (theScores.Length == 3) // 3 Players playing
         {
-            // 0 strongest, 1 average, 2 weakest
+            // 2 strongest, 1 average, 0 weakest
             if (theScores[0] == playerScoresByOrder[0]) // Player's 1 score
             {
                 PlayerOneSpeed();
@@ -126,9 +132,9 @@ public class DirectorAI : MonoBehaviour
                 PlayerThreeSpeed();
             }
         }
-        if (theScores.Length == 4) // 4 Players playing
+        else if (theScores.Length == 4) // 4 Players playing
         {
-            // 0 strongest, 1 and 2 average, 3 weakest
+            // 3 strongest, 2 and 1 average, 0 weakest
             if (theScores[0] == playerScoresByOrder[0]) // Player's 1 score
             {
                 PlayerOneSpeed();
@@ -158,6 +164,21 @@ public class DirectorAI : MonoBehaviour
                 PlayerFourSpeed();
             }
         }
+        else
+        {
+            FailedCondition();
+        }
+    }
+
+    void ChangeColor(Color endingColor)
+    {
+        text.DOColor(endingColor, 0.25f);
+    }
+
+    void FailedCondition()
+    {
+        text.text = "Condition not met!";
+        ChangeColor(myColors.colors[1]);
     }
 
     void PlayerOneGrowth()

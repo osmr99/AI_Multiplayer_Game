@@ -13,8 +13,8 @@ public class Score : MonoBehaviour
     float startingFontSize = 35;
     float startingScale = 1;
     int dotScore = 50;
-    public ScoreScriptable scoreAmount;
-    int sizeAmount = 0;
+    public ScoreScriptable stats;
+    [SerializeField] PowerupUI powerupUI;
     Vector3 scaleChange;
 
     // Start is called before the first frame update
@@ -34,14 +34,17 @@ public class Score : MonoBehaviour
 
     public void updateScoreAndSize()
     {
-        scoreAmount.currentScore += dotScore;
-        sizeAmount++;
-        score.text = "Score: " + scoreAmount.currentScore;
-        score.transform.localScale = scaleChange;
-        score.transform.DOScale(startingScale, 0.2f).ForceInit();
-        size.text = sizeAmount.ToString();
-        size.transform.localScale = scaleChange;
-        size.transform.DOScale(startingScale, 0.3f).ForceInit();
+        if(powerupUI.allowPowerup)
+        {
+            stats.currentScore += dotScore;
+            stats.currentSize++;
+            score.text = "Score: " + stats.currentScore;
+            score.transform.localScale = scaleChange;
+            score.transform.DOScale(startingScale, 0.2f).ForceInit();
+            size.text = stats.currentSize.ToString();
+            size.transform.localScale = scaleChange;
+            size.transform.DOScale(startingScale, 0.3f).ForceInit();
+        }
     }
 
     public void SetColor(Color matchColor)
@@ -54,8 +57,13 @@ public class Score : MonoBehaviour
     {
         for(int i = 0; i < 25; i++)
         {
-            yield return new WaitForSeconds(0.2f);
-            updateScoreAndSize();
+            if (powerupUI.allowPowerup)
+            {
+                yield return new WaitForSeconds(0.2f);
+                updateScoreAndSize();
+            }
+            else
+                break;
         }
     }
 
@@ -66,6 +74,8 @@ public class Score : MonoBehaviour
 
     public void ResetUI()
     {
+        score.transform.DOShakePosition(0.25f, 10, 50, 50);
+        size.transform.DOShakePosition(0.25f, 10, 50, 50);
         score.text = "Score: 0";
         size.text = "0";
     }

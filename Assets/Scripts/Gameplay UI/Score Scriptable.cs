@@ -9,4 +9,5 @@ using TMPro;
 public class ScoreScriptable : ScriptableObject
 {
     public int currentScore;
+    public int currentSize;
 }

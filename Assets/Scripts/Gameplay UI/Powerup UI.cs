@@ -17,18 +17,19 @@ public class PowerupUI : MonoBehaviour
     [SerializeField] int randomness;
     float startingScale;
     Vector3 scaleChange;
+    public bool allowPowerup = true;
 
-    enum PowerupList
-    {
-        SPLIT_SHIELD,
-        MAGNET,
-        SPEED_BOOST,
-        SHOCKWAVE,
-        GROWTH,
-        NONE
-    }
+    //enum PowerupList
+    //{
+        //SPLIT_SHIELD,
+        //MAGNET,
+        //SPEED_BOOST,
+        //SHOCKWAVE,
+        //GROWTH,
+        //NONE
+    //}
 
-    PowerupList currentPowerup = PowerupList.NONE;
+    //PowerupList currentPowerup = PowerupList.NONE;
 
     // Start is called before the first frame update
     void Start()
@@ -41,42 +42,42 @@ public class PowerupUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(UnityEngine.Input.GetKeyDown(KeyCode.P))
-        {
-            StartCoroutine(SpeedBoostUI());
-        }
+        //if(UnityEngine.Input.GetKeyDown(KeyCode.P))
+        //{
+            //StartCoroutine(SpeedBoostUI());
+        //}
 
-        if (UnityEngine.Input.GetKeyDown(KeyCode.Q))
-        {
-            StartCoroutine(GrowthUI());
-        }
+        //if (UnityEngine.Input.GetKeyDown(KeyCode.Q))
+        //{
+            //StartCoroutine(GrowthUI());
+        //}
 
-        if(UnityEngine.Input.GetKeyDown(KeyCode.I))
-        {
-            ChangeColor(Color.red);
-            ChangeText("Magnet");
-            StartCoroutine(MagnetUI());
-        }
+        //if(UnityEngine.Input.GetKeyDown(KeyCode.I))
+        //{
+            //ChangeColor(Color.red);
+            //ChangeText("Magnet");
+            //StartCoroutine(MagnetUI());
+        //}
 
     }
 
-    void RngPowerup()
-    {
-        currentPowerup = (PowerupList)Random.Range(0, 5);
-        switch(currentPowerup)
-        {
-            case PowerupList.SPLIT_SHIELD:
-                ChangeColor(Color.blue); ChangeText("Split Shield"); break;
-            case PowerupList.MAGNET:
-                ChangeColor(Color.red); ChangeText("Magnet"); break;
-            case PowerupList.SPEED_BOOST:
-                ChangeColor(Color.green); ChangeText("Speed Boost"); break;
-            case PowerupList.SHOCKWAVE:
-                ChangeColor(Color.magenta); ChangeText("Shockwave"); break;
-            case PowerupList.GROWTH:
-                ChangeColor(Color.yellow); ChangeText("Growth"); break;
-        }
-    }
+    //void RngPowerup()
+    //{
+        //currentPowerup = (PowerupList)Random.Range(0, 5);
+        //switch(currentPowerup)
+        //{
+            //case PowerupList.SPLIT_SHIELD:
+                //ChangeColor(Color.blue); ChangeText("Split Shield"); break;
+            //case PowerupList.MAGNET:
+                //ChangeColor(Color.red); ChangeText("Magnet"); break;
+            //case PowerupList.SPEED_BOOST:
+                //ChangeColor(Color.green); ChangeText("Speed Boost"); break;
+            //case PowerupList.SHOCKWAVE:
+                //ChangeColor(Color.magenta); ChangeText("Shockwave"); break;
+            //case PowerupList.GROWTH:
+                //ChangeColor(Color.yellow); ChangeText("Growth"); break;
+        //}
+    //}
 
     void ChangeColor(Color targetColor)
     {
@@ -104,9 +105,14 @@ public class PowerupUI : MonoBehaviour
         float timeRemaining = 10.0f;
         for(int i = 0; i <= 100; i++)
         {
-            powerup.text = "Powerup: Speed Boost\n(" + timeRemaining.ToString("F1") + "s)";
-            timeRemaining -= 0.1f;
-            yield return new WaitForSeconds(0.1f);
+            if(allowPowerup)
+            {
+                powerup.text = "Powerup: Speed Boost\n(" + timeRemaining.ToString("F1") + "s)";
+                timeRemaining -= 0.1f;
+                yield return new WaitForSeconds(0.1f);
+            }
+            else
+                break;
         }
         ResetText();
     }
@@ -118,9 +124,14 @@ public class PowerupUI : MonoBehaviour
         float timeRemaining = 5.0f;
         for (int i = 0; i <= 50; i++)
         {
-            powerup.text = "Powerup: Growth\n(" + timeRemaining.ToString("F1") + "s)";
-            timeRemaining -= 0.1f;
-            yield return new WaitForSeconds(0.1f);
+            if (allowPowerup)
+            {
+                powerup.text = "Powerup: Growth\n(" + timeRemaining.ToString("F1") + "s)";
+                timeRemaining -= 0.1f;
+                yield return new WaitForSeconds(0.1f);
+            }
+            else
+                break;
         }
         ResetText();
     }
@@ -130,20 +141,27 @@ public class PowerupUI : MonoBehaviour
         float timeRemaining = 10.0f;
         for (int i = 0; i <= 100; i++)
         {
-            powerup.text = "Powerup: Magnet\n(" + timeRemaining.ToString("F1") + "s)";
-            timeRemaining -= 0.1f;
-            yield return new WaitForSeconds(0.1f);
+            if (allowPowerup)
+            {
+                powerup.text = "Powerup: Magnet\n(" + timeRemaining.ToString("F1") + "s)";
+                timeRemaining -= 0.1f;
+                yield return new WaitForSeconds(0.1f);
+            }
+            else
+                break;
         }
         ResetText();
     }
 
     public void StartGrowth()
     {
-        StartCoroutine(GrowthUI());
+        if(allowPowerup)
+            StartCoroutine(GrowthUI());
     }
 
     public void StartSpeedBoost()
     {
-        StartCoroutine(SpeedBoostUI());
+        if(allowPowerup)
+            StartCoroutine(SpeedBoostUI());
     }
 }

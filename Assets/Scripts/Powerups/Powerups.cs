@@ -15,26 +15,26 @@ public class Powerups : MonoBehaviour
         playerspeed = player.speed;
     }
 
-    private void Update()
-    {
-        if (player.speed < (playerspeed * 1.5f))
-        {
-            if (UnityEngine.Input.GetKeyDown(KeyCode.P))
-            {
-                StartCoroutine(SpeedBoost());
-            }
-        }
+    //private void Update()
+    //{
+        //if (player.speed < (playerspeed * 1.5f))
+        //{
+            //if (UnityEngine.Input.GetKeyDown(KeyCode.P))
+            //{
+                //StartCoroutine(SpeedBoost());
+            //}
+        //}
 
-        if (UnityEngine.Input.GetKeyDown(KeyCode.Q))
-        {
-            StartCoroutine(Growth());
-        }
+        //if (UnityEngine.Input.GetKeyDown(KeyCode.Q))
+        //{
+            //StartCoroutine(Growth());
+        //}
 
-        if (UnityEngine.Input.GetKeyDown(KeyCode.I))
-        {
-            StartCoroutine (Magnet());
-        }
-    }
+        //if (UnityEngine.Input.GetKeyDown(KeyCode.I))
+        //{
+            //StartCoroutine (Magnet());
+        //}
+    //}
 
     IEnumerator SpeedBoost()
     {
