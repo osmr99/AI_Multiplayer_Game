@@ -19,7 +19,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Dotcolors myColor;
     Color rngColor;
     int num;
+    int spawnX;
+    int spawnY;
     public DotCount dotCount;
+    ScoreScriptable scoreAmount;
 
     private void Start()
     {
@@ -72,11 +75,56 @@ public class PlayerMovement : MonoBehaviour
                 score.updateScoreAndSize();
             }
         }
+        else
+        {
+            if(collision.transform.localScale.x < this.transform.localScale.x)
+            {
+                transform.localScale += collision.transform.localScale;
+                StartCoroutine(playerDeath(collision.gameObject));
+            }
+        }
     }
 
     public void AddAgainToQueue(GameObject e)
     {
         spawner.dotPool.Enqueue(e);
         e.SetActive(false);
+    }
+
+    void resetMyUI()
+    {
+        if (playerIndex == 1)
+        {
+            score = GameObject.Find("Player 1 UI").GetComponentInChildren<Score>();
+            score.ResetUI();
+        }
+        if (playerIndex == 2)
+        {
+            score = GameObject.Find("Player 2 UI").GetComponentInChildren<Score>();
+            score.ResetUI();
+        }
+        if (playerIndex == 3)
+        {
+            score = GameObject.Find("Player 3 UI").GetComponentInChildren<Score>();
+            score.ResetUI();
+        }
+        if (playerIndex == 4)
+        {
+            score = GameObject.Find("Player 4 UI").GetComponentInChildren<Score>();
+            score.ResetUI();
+        }
+    }
+
+    IEnumerator playerDeath(GameObject player)
+    {
+        player.SetActive(false);
+        yield return new WaitForSecondsRealtime(5);
+        player.SetActive(true);
+        player.transform.localScale = new Vector2(1, 1);
+        this.scoreAmount.currentScore = 0;
+        resetMyUI();
+        spawnX = Random.Range(-23, 23);
+        spawnY = Random.Range(-14, 14);
+        player.transform.position = new Vector2(spawnX, spawnY);
     }
 }

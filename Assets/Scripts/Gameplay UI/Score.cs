@@ -63,4 +63,10 @@ public class Score : MonoBehaviour
     {
         StartCoroutine(GrowthScore());
     }
+
+    public void ResetUI()
+    {
+        score.text = "Score: 0";
+        size.text = "0";
+    }
 }
