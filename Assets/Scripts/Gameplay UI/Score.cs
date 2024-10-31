@@ -52,9 +52,9 @@ public class Score : MonoBehaviour
 
     IEnumerator GrowthScore()
     {
-        for(int i = 0; i < 5; i++)
+        for(int i = 0; i < 25; i++)
         {
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(0.2f);
             updateScoreAndSize();
         }
     }
@@ -62,5 +62,11 @@ public class Score : MonoBehaviour
     public void StartGrowth()
     {
         StartCoroutine(GrowthScore());
+    }
+
+    public void ResetUI()
+    {
+        score.text = "Score: 0";
+        size.text = "0";
     }
 }

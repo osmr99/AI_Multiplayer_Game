@@ -51,16 +51,11 @@ public class Powerups : MonoBehaviour
     }
     IEnumerator Growth()
     {
-        yield return new WaitForSecondsRealtime(1);
-        playerSize.transform.localScale += new Vector3(0.1f, 0.1f, 0f);
-        yield return new WaitForSecondsRealtime(1);
-        playerSize.transform.localScale += new Vector3(0.1f, 0.1f, 0f);
-        yield return new WaitForSecondsRealtime(1);
-        playerSize.transform.localScale += new Vector3(0.1f, 0.1f, 0f);
-        yield return new WaitForSecondsRealtime(1);
-        playerSize.transform.localScale += new Vector3(0.1f, 0.1f, 0f);
-        yield return new WaitForSecondsRealtime(1);
-        playerSize.transform.localScale += new Vector3(0.1f, 0.1f, 0f);
+        for (int i = 0; i < 25; i++)
+        {
+            yield return new WaitForSecondsRealtime(0.2f);
+            playerSize.transform.localScale += new Vector3(0.1f, 0.1f, 0f);
+        }
     }
 
     void Shockwave()
