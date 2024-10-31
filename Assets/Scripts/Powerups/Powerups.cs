@@ -74,4 +74,13 @@ public class Powerups : MonoBehaviour
     {
 
     }
+    public void StartGrowth()
+    {
+        StartCoroutine(Growth());
+    }
+
+    public void StartSpeedBoost()
+    {
+        StartCoroutine(SpeedBoost());
+    }
 }

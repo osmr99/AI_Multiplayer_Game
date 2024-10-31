@@ -45,7 +45,7 @@ public class SceneHandler2 : MonoBehaviour
         SceneManager.UnloadSceneAsync("Main Menu UI");
         setActive(dotSpawner);
         spawnPlayer(player1);
-        //spawnPlayer(player2);
+        spawnPlayer(player2);
         //spawnPlayer(player3);
         //spawnPlayer(player4);
         SceneManager.LoadSceneAsync("Gameplay UI 2", LoadSceneMode.Additive);

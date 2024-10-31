@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Cinemachine;
+using TMPro;
+using Unity.VisualScripting;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -14,9 +16,11 @@ public class PlayerMovement : MonoBehaviour
     Score score;
     SpriteRenderer playerCircle;
     [SerializeField] Dotcolors playerColors;
+    [SerializeField] Dotcolors myColor;
     Color rngColor;
     int num;
     public DotCount dotCount;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -26,7 +30,8 @@ public class PlayerMovement : MonoBehaviour
         num = Random.Range(0, playerColors.colors.Count);
         rngColor = playerColors.colors[num];
         rngColor.a = 1;
-        playerCircle.color = rngColor;
+        myColor.colors[0] = rngColor;
+        playerCircle.color = myColor.colors[0];
     }
 
     private void FixedUpdate()

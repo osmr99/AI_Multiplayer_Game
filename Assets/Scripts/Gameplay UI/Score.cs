@@ -9,6 +9,7 @@ public class Score : MonoBehaviour
 {
     [SerializeField] TMP_Text score;
     [SerializeField] TMP_Text size;
+    [SerializeField] Dotcolors textColor;
     float startingFontSize = 35;
     float startingScale = 1;
     int dotScore = 50;
@@ -21,6 +22,8 @@ public class Score : MonoBehaviour
     {
         score.fontSize = startingFontSize;
         scaleChange = new Vector3(1.075f, 1.075f, 1.075f);
+        score.color = textColor.colors[0];
+        size.color = textColor.colors[0];
     }
 
     void Update()
@@ -41,6 +44,12 @@ public class Score : MonoBehaviour
         size.transform.DOScale(startingScale, 0.3f).ForceInit();
     }
 
+    public void SetColor(Color matchColor)
+    {
+        score.color = matchColor;
+        size.color = matchColor;
+    }
+
     IEnumerator GrowthScore()
     {
         for(int i = 0; i < 5; i++)
@@ -48,5 +57,10 @@ public class Score : MonoBehaviour
             yield return new WaitForSeconds(1);
             updateScoreAndSize();
         }
+    }
+
+    public void StartGrowth()
+    {
+        StartCoroutine(GrowthScore());
     }
 }

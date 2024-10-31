@@ -43,15 +43,11 @@ public class PowerupUI : MonoBehaviour
     {
         if(UnityEngine.Input.GetKeyDown(KeyCode.P))
         {
-            ChangeColor(Color.green);
-            ChangeText("Speed Boost");
             StartCoroutine(SpeedBoostUI());
         }
 
         if (UnityEngine.Input.GetKeyDown(KeyCode.Q))
         {
-            ChangeColor(Color.yellow);
-            ChangeText("Growth");
             StartCoroutine(GrowthUI());
         }
 
@@ -103,6 +99,8 @@ public class PowerupUI : MonoBehaviour
 
     IEnumerator SpeedBoostUI()
     {
+        ChangeColor(Color.green);
+        ChangeText("Speed Boost");
         float timeRemaining = 10.0f;
         for(int i = 0; i <= 100; i++)
         {
@@ -115,6 +113,8 @@ public class PowerupUI : MonoBehaviour
 
     IEnumerator GrowthUI()
     {
+        ChangeColor(Color.yellow);
+        ChangeText("Growth");
         float timeRemaining = 5.0f;
         for (int i = 0; i <= 50; i++)
         {
@@ -135,5 +135,15 @@ public class PowerupUI : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         }
         ResetText();
+    }
+
+    public void StartGrowth()
+    {
+        StartCoroutine(GrowthUI());
+    }
+
+    public void StartSpeedBoost()
+    {
+        StartCoroutine(SpeedBoostUI());
     }
 }
