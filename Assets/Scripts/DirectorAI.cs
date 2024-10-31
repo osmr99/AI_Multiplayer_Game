@@ -91,7 +91,6 @@ public class DirectorAI : MonoBehaviour
         sceneHandler = FindAnyObjectByType<SceneHandler2>();
         for(int i = 0; i < sceneHandler.myArray.Length; i++)
         {
-            Debug.Log(sceneHandler.myArray.Length);
             if(sceneHandler.myArray[i].playerIndex == 1)
             {
                 player1 = sceneHandler.myArray[i];

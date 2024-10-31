@@ -51,9 +51,9 @@ public class Powerups : MonoBehaviour
     }
     IEnumerator Growth()
     {
-        for (int i = 0; i < 25; i++)
+        for (int i = 0; i < 50; i++)
         {
-            yield return new WaitForSecondsRealtime(0.2f);
+            yield return new WaitForSecondsRealtime(0.1f);
             playerSize.transform.localScale += new Vector3(0.1f, 0.1f, 0f);
         }
     }

@@ -33,8 +33,8 @@ public class EndingScript : MonoBehaviour
         {
             if (theScores[0] == playerScoresByOrder[0]) // If Player 1 got the worst score...
             {
-                updateRanking(secondPlace, 1, theScores[1]); // Player 1, 2nd Place
-                updateRanking(firstPlace, 2, theScores[0]);  // Player 2, 1st Place
+                updateRanking(secondPlace, 1, theScores[0]); // Player 1, 2nd Place
+                updateRanking(firstPlace, 2, theScores[1]);  // Player 2, 1st Place
             }
             else if (theScores[0] == playerScoresByOrder[1]) // If Player 2 got the worst score...
             {

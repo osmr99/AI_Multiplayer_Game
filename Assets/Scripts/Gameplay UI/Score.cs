@@ -59,11 +59,11 @@ public class Score : MonoBehaviour
 
     IEnumerator GrowthScore()
     {
-        for(int i = 0; i < 25; i++)
+        for(int i = 0; i < 50; i++)
         {
             if (powerupUI.allowPowerup)
             {
-                yield return new WaitForSeconds(0.2f);
+                yield return new WaitForSeconds(0.1f);
                 updateScoreAndSize();
             }
             else
