@@ -22,10 +22,14 @@ public class DirectorAI : MonoBehaviour
     GameObject player3UI;
     GameObject player4UI;
 
-    GameObject player1;
-    GameObject player2;
-    GameObject player3;
-    GameObject player4;
+    PlayerMovement player1;
+    PlayerMovement player2;
+    PlayerMovement player3;
+    PlayerMovement player4;
+
+    SceneHandler2 sceneHandler;
+
+    int numOfPlayers = 0;
 
     public void TheStart()
     {
@@ -34,17 +38,72 @@ public class DirectorAI : MonoBehaviour
 
     IEnumerator TheStartTwo()
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.021f);
         text = GameObject.Find("Power Up Cooldown").GetComponentInChildren<TMP_Text>();
         player1UI = GameObject.Find("Player 1 UI");
         player2UI = GameObject.Find("Player 2 UI");
         player3UI = GameObject.Find("Player 3 UI");
         player4UI = GameObject.Find("Player 4 UI");
-        player1 = GameObject.Find("Player Prefab 1");
-        player2 = GameObject.Find("Player Prefab 2");
-        player3 = GameObject.Find("Player Prefab 3");
-        player4 = GameObject.Find("Player Prefab 4");
-        StartCoroutine(powerUpGiverUI());
+        player1UI.SetActive(false);
+        player2UI.SetActive(false);
+        player3UI.SetActive(false);
+        player4UI.SetActive(false);
+        sceneHandler = FindAnyObjectByType<SceneHandler2>();
+        for(int i = 1; i <= sceneHandler.myList.Length; i++)
+        {
+            if(i == 1 && sceneHandler.myList[i-1].gameObject.name != "Player Prefab")
+            {
+                player1 = sceneHandler.myList[i-1];
+                numOfPlayers = 1;
+            }
+            else if(i == 2 && sceneHandler.myList[i-1].gameObject.name != "Player Prefab")
+            {
+                player2 = sceneHandler.myList[i-1];
+                numOfPlayers = 2;
+            }
+            else if(i == 3 && sceneHandler.myList[i-1].gameObject.name != "Player Prefab")
+            {
+                player3 = sceneHandler.myList[i-1];
+                numOfPlayers = 3;
+            }
+            else if (i == 4 && sceneHandler.myList[i-1].gameObject.name != "Player Prefab")
+            {
+                player4 = sceneHandler.myList[i-1];
+                numOfPlayers = 4;
+            }
+        }
+        if (numOfPlayers == 1)
+        {
+            player1UI.SetActive(true);
+        }
+        else if (numOfPlayers == 2)
+        {
+            player1UI.SetActive(true);
+            player2UI.SetActive(true);
+        }
+        else if (numOfPlayers == 3)
+        {
+            player1UI.SetActive(true);
+            player2UI.SetActive(true);
+            player3UI.SetActive(true);
+        }
+        else if(numOfPlayers == 4)
+        {
+            player1UI.SetActive(true);
+            player2UI.SetActive(true);
+            player3UI.SetActive(true);
+            player4UI.SetActive(true);
+        }
+
+        if(numOfPlayers > 1)
+        {
+            StartCoroutine(powerUpGiverUI());
+        }
+        else
+        {
+            text.text = "Playground mode";
+        }
+
     }
 
     IEnumerator powerUpGiverUI()
@@ -190,52 +249,52 @@ public class DirectorAI : MonoBehaviour
 
     void PlayerOneGrowth()
     {
-        player1.GetComponentInChildren<Powerups>().StartGrowth();
+        player1.GetComponent<Powerups>().StartGrowth();
         player1UI.GetComponentInChildren<PowerupUI>().StartGrowth();
         player1UI.GetComponentInChildren<Score>().StartGrowth();
     }
 
     void PlayerTwoGrowth()
     {
-        player2.GetComponentInChildren<Powerups>().StartGrowth();
+        player2.GetComponent<Powerups>().StartGrowth();
         player2UI.GetComponentInChildren<PowerupUI>().StartGrowth();
         player2UI.GetComponentInChildren<Score>().StartGrowth();
     }
 
     void PlayerThreeGrowth()
     {
-        player3.GetComponentInChildren<Powerups>().StartGrowth();
+        player3.GetComponent<Powerups>().StartGrowth();
         player3UI.GetComponentInChildren<PowerupUI>().StartGrowth();
         player3UI.GetComponentInChildren<PowerupUI>().StartGrowth();
     }
 
     void PlayerFourGrowth()
     {
-        player4.GetComponentInChildren<Powerups>().StartGrowth();
+        player4.GetComponent<Powerups>().StartGrowth();
         player4UI.GetComponentInChildren<PowerupUI>().StartGrowth();
         player4UI.GetComponentInChildren<PowerupUI>().StartGrowth();
     }
 
     void PlayerOneSpeed()
     {
-        player1.GetComponentInChildren<Powerups>().StartSpeedBoost();
+        player1.GetComponent<Powerups>().StartSpeedBoost();
         player1UI.GetComponentInChildren<PowerupUI>().StartSpeedBoost();
     }
 
     void PlayerTwoSpeed()
     {
-        player2.GetComponentInChildren<Powerups>().StartSpeedBoost();
+        player2.GetComponent<Powerups>().StartSpeedBoost();
         player2UI.GetComponentInChildren<PowerupUI>().StartSpeedBoost();
     }
 
     void PlayerThreeSpeed()
     {
-        player3.GetComponentInChildren<Powerups>().StartSpeedBoost();
+        player3.GetComponent<Powerups>().StartSpeedBoost();
         player3UI.GetComponentInChildren<PowerupUI>().StartSpeedBoost();
     }
     void PlayerFourSpeed()
     {
-        player3.GetComponentInChildren<Powerups>().StartSpeedBoost();
-        player3UI.GetComponentInChildren<PowerupUI>().StartSpeedBoost();
+        player4.GetComponent<Powerups>().StartSpeedBoost();
+        player4UI.GetComponentInChildren<PowerupUI>().StartSpeedBoost();
     }
 }

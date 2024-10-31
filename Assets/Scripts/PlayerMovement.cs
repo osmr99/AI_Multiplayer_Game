@@ -17,10 +17,8 @@ public class PlayerMovement : MonoBehaviour
     DotSpawner spawner;
     Score score;
     PowerupUI powerup;
-    SpriteRenderer playerCircle;
-    [SerializeField] Dotcolors playerColors;
-    [SerializeField] Dotcolors myColor;
-    Color rngColor;
+    public SpriteRenderer playerCircle;
+    [SerializeField] public Dotcolors myColor;
     int num;
     int spawnX;
     int spawnY;
@@ -35,14 +33,10 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        spawner = FindObjectOfType<DotSpawner>();
+        StartCoroutine(KeepTrying());
         playerCircle = GetComponent<SpriteRenderer>();
         playerCircle.enabled = true;
-        num = Random.Range(0, playerColors.colors.Count);
-        rngColor = playerColors.colors[num];
-        rngColor.a = 1;
-        myColor.colors[0] = rngColor;
-        playerCircle.color = myColor.colors[0];
+        StartCoroutine(SetColor());
     }
 
     private void FixedUpdate()
@@ -118,7 +112,6 @@ public class PlayerMovement : MonoBehaviour
                     playerOneStats.currentScore = 0;
                     playerOneStats.currentSize = 0;
                     score.ResetUI();
-                    Debug.Log(1);
                 }
                 if (collision.GetComponentInChildren<PlayerMovement>().playerIndex == 2)
                 {
@@ -128,7 +121,6 @@ public class PlayerMovement : MonoBehaviour
                     playerTwoStats.currentScore = 0;
                     playerTwoStats.currentSize = 0;
                     score.ResetUI();
-                    Debug.Log(2);
                 }
                 if (collision.GetComponentInChildren<PlayerMovement>().playerIndex == 3)
                 {
@@ -138,7 +130,6 @@ public class PlayerMovement : MonoBehaviour
                     playerThreeStats.currentScore = 0;
                     playerThreeStats.currentSize = 0;
                     score.ResetUI();
-                    Debug.Log(3);
                 }
                 if (collision.GetComponentInChildren<PlayerMovement>().playerIndex == 4)
                 {
@@ -148,7 +139,6 @@ public class PlayerMovement : MonoBehaviour
                     playerFourStats.currentScore = 0;
                     playerFourStats.currentSize = 0;
                     score.ResetUI();
-                    Debug.Log(4);
                 }
                 StartCoroutine(playerDeath(collision.gameObject));
             }
@@ -210,5 +200,25 @@ public class PlayerMovement : MonoBehaviour
             return ints;
         }
         return null;
+    }
+
+    IEnumerator KeepTrying()
+    {
+        if(spawner == null)
+        {
+            spawner = FindObjectOfType<DotSpawner>();
+            yield return new WaitForSeconds(0.1f);
+            StartCoroutine(KeepTrying());
+        }
+        else
+        {
+            transform.position = Vector2.zero;
+        }
+    }
+
+    IEnumerator SetColor()
+    {
+        yield return new WaitForSeconds(0.1f);
+        
     }
 }

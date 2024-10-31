@@ -16,6 +16,7 @@ public class Score : MonoBehaviour
     public ScoreScriptable stats;
     [SerializeField] PowerupUI powerupUI;
     Vector3 scaleChange;
+    SceneHandler2 sceneHandler;
 
     // Start is called before the first frame update
     void Start()
@@ -24,12 +25,13 @@ public class Score : MonoBehaviour
         scaleChange = new Vector3(1.075f, 1.075f, 1.075f);
         score.color = textColor.colors[0];
         size.color = textColor.colors[0];
+        sceneHandler = FindAnyObjectByType<SceneHandler2>();
     }
 
     void Update()
     {
-        if (UnityEngine.Input.GetKeyDown(KeyCode.Q))
-            StartCoroutine(GrowthScore());
+        //if (UnityEngine.Input.GetKeyDown(KeyCode.Q))
+            //StartCoroutine(GrowthScore());
     }
 
     public void updateScoreAndSize()
@@ -91,5 +93,6 @@ public class Score : MonoBehaviour
         }
         score.text = "Score: 0";
         size.text = "0";
+        yield return new WaitForSeconds(0.021f);
     }
 }

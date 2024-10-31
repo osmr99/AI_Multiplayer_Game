@@ -38,7 +38,7 @@ public class DotSpawner : MonoBehaviour
             current.gameObject.transform.position = new Vector2(myX, myY);
             dotCount.currentCount++;
         }
-        yield return new WaitForSeconds(spawnRate); // Is normally 0.5f
+        yield return new WaitForSeconds(spawnRate); // Normally is 0.5f
         StartCoroutine(Spawn());
     }
 }

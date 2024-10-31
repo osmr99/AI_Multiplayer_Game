@@ -180,7 +180,7 @@ Transform:
   m_GameObject: {fileID: 4716900131025092097}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4, y: 0, z: -16}
+  m_LocalPosition: {x: 377, y: 0, z: -1508}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -360,10 +360,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bda9946230e6174cb7eadce62eb651a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerIndex: 1
+  playerIndex: 0
   speed: 2
   playerColors: {fileID: 11400000, guid: 6867b64cbb126e94f8c32f11175f91e5, type: 2}
-  myColor: {fileID: 11400000, guid: 6239d4891ed95d443ae713e8f2ac7dbe, type: 2}
+  myColor: {fileID: 0}
   dotCount: {fileID: 11400000, guid: e073b399dc5108a469f21fbc087cc546, type: 2}
   playerOneStats: {fileID: 11400000, guid: 2eada4d7feb16fb4997e9ff528bfffe0, type: 2}
   playerTwoStats: {fileID: 11400000, guid: 864bfe602cb86fb4da56a31eafbe35c6, type: 2}
