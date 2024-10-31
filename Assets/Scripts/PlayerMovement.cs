@@ -46,9 +46,9 @@ public class PlayerMovement : MonoBehaviour
             transform.localScale += new Vector3(0.1f, 0.1f, 0f);
             cam.m_Lens.OrthographicSize += 0.05f;
             score = FindObjectOfType<Score>();
-            score.updateScoreAndSize(); 
+            score.updateScoreAndSize();
         }
-            
+
     }
 
     public void AddAgainToQueue(GameObject e)

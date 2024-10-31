@@ -1,10 +1,13 @@
 using System.Collections;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class Powerups : MonoBehaviour
 {
     [SerializeField] PlayerMovement player;
     [SerializeField] GameObject playerSize;
+    [SerializeField] GameObject magnetRadius;
+    [SerializeField] GameObject shockwaveRadius;
     float playerspeed;
 
     private void Start()
@@ -26,6 +29,11 @@ public class Powerups : MonoBehaviour
         {
             StartCoroutine(Growth());
         }
+
+        if (UnityEngine.Input.GetKeyDown(KeyCode.I))
+        {
+            StartCoroutine (Magnet());
+        }
     }
 
     IEnumerator SpeedBoost()
@@ -37,7 +45,9 @@ public class Powerups : MonoBehaviour
 
     IEnumerator Magnet()
     {
+        magnetRadius.SetActive(true);
         yield return new WaitForSecondsRealtime(10);
+        magnetRadius.SetActive(false);
     }
     IEnumerator Growth()
     {
@@ -55,7 +65,8 @@ public class Powerups : MonoBehaviour
 
     void Shockwave()
     {
-
+        shockwaveRadius.SetActive(true);
+        shockwaveRadius.SetActive(false);
     }
 
 
