@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Dot Count
   m_EditorClassIdentifier: 
   currentCount: 0
-  maxCount: 50
+  maxCount: 500

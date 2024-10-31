@@ -9,7 +9,7 @@ public class Score : MonoBehaviour
 {
     [SerializeField] TMP_Text score;
     [SerializeField] TMP_Text size;
-    float startingFontSize = 75;
+    float startingFontSize = 35;
     float startingScale = 1;
     int dotScore = 50;
     public ScoreScriptable scoreAmount;

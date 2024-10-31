@@ -12,12 +12,13 @@ public class DotSpawner2 : MonoBehaviour
     float myX;
     float myY;
     [SerializeField] DotCount dotCount;
+    public float spawnRate;
     // Start is called before the first frame update
     void Start()
     {
         //Instantiate(dot, new Vector2(0, 0), Quaternion.identity);
         //StartCoroutine(Spawn());
-        for (dotCount.currentCount = 0; dotCount.currentCount < dotCount.maxCount; dotCount.currentCount++)
+        for (int i = 0; i < dotCount.maxCount; i++)
         {
             var e = Instantiate(dot);
             dotPool.Enqueue(e);
@@ -35,8 +36,9 @@ public class DotSpawner2 : MonoBehaviour
             var current = dotPool.Dequeue();
             current.gameObject.SetActive(true);
             current.gameObject.transform.position = new Vector2(myX, myY);
+            dotCount.currentCount++;
         }
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(spawnRate); // Is normally 0.5f
         StartCoroutine(Spawn());
     }
 }
