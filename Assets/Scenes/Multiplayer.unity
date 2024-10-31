@@ -393,6 +393,8 @@ MonoBehaviour:
   myColors: {fileID: 11400000, guid: d07234281613240449091f891a709d8f, type: 2}
   theScores: 
   playerScoresByOrder: 
+  targetScore: 12500
+  numOfPlayers: 0
 --- !u!1 &799668332
 GameObject:
   m_ObjectHideFlags: 3
@@ -781,6 +783,7 @@ MonoBehaviour:
   color3: {fileID: 11400000, guid: 64f7234c09ab25442a226fbfb17661db, type: 2}
   color4: {fileID: 11400000, guid: 3f7aa2b4f18355c44a86a004a7a3d76a, type: 2}
   playerIndexAvailable: 0
+  myArray: []
 --- !u!114 &1176627979
 MonoBehaviour:
   m_ObjectHideFlags: 0

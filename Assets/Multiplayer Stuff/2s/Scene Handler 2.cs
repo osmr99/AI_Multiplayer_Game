@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using TMPro;
-using UnityEditor.Networking.PlayerConnection;
 
 public class SceneHandler2 : MonoBehaviour
 {
@@ -43,9 +42,6 @@ public class SceneHandler2 : MonoBehaviour
         dotSpawner = GameObject.Find("Dot Spawner");
         directorAI = GameObject.Find("Director AI");
         dotSpawner.SetActive(false);
-    }
-    void Start()
-    {
         stats1.currentScore = 0;
         stats2.currentScore = 0;
         stats3.currentScore = 0;
@@ -55,6 +51,9 @@ public class SceneHandler2 : MonoBehaviour
         stats3.currentSize = 0;
         stats4.currentSize = 0;
         stats1.currentSize = 0;
+    }
+    void Start()
+    {
         SceneManager.LoadSceneAsync("Main Menu UI", LoadSceneMode.Additive);
         manager = GetComponent<PlayerInputManager>();
         RandomPlayerColor(color1);

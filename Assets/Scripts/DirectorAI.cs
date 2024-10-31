@@ -6,6 +6,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 public class DirectorAI : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class DirectorAI : MonoBehaviour
     TMP_Text text;
     public int[] theScores;
     public int[] playerScoresByOrder;
+    public int targetScore;
 
     GameObject player1UI;
     GameObject player2UI;
@@ -29,11 +31,49 @@ public class DirectorAI : MonoBehaviour
 
     SceneHandler2 sceneHandler;
 
-    int numOfPlayers = 0;
+    public int numOfPlayers = 0;
+    bool stopEverything = false;
 
     public void TheStart()
     {
         StartCoroutine(TheStartTwo());
+    }
+
+    private void FixedUpdate()
+    {
+        for (int i = 0; i < numOfPlayers; i++)
+        {
+            if (scores[i].currentScore >= targetScore && stopEverything == false)
+            {
+                stopEverything = true;
+                StartCoroutine(loadEnding());
+            }
+            else if(stopEverything)
+            {
+                if (numOfPlayers == 1)
+                {
+                    player1.speed = 0;
+                }
+                else if (numOfPlayers == 2)
+                {
+                    player1.speed = 0;
+                    player2.speed = 0;
+                }
+                else if (numOfPlayers == 3)
+                {
+                    player1.speed = 0;
+                    player2.speed = 0;
+                    player3.speed = 0;
+                }
+                else if (numOfPlayers == 4)
+                {
+                    player1.speed = 0;
+                    player2.speed = 0;
+                    player3.speed = 0;
+                    player4.speed = 0;
+                }
+            }
+        }
     }
 
     IEnumerator TheStartTwo()
@@ -49,29 +89,34 @@ public class DirectorAI : MonoBehaviour
         player3UI.SetActive(false);
         player4UI.SetActive(false);
         sceneHandler = FindAnyObjectByType<SceneHandler2>();
-        for(int i = 1; i <= sceneHandler.myArray.Length; i++)
+        for(int i = 0; i < sceneHandler.myArray.Length; i++)
         {
-            if(i == 1 && sceneHandler.myArray[i-1].gameObject.name != "Player Prefab")
+            Debug.Log(sceneHandler.myArray.Length);
+            if(sceneHandler.myArray[i].playerIndex == 1)
             {
-                player1 = sceneHandler.myArray[i-1];
-                numOfPlayers = 1;
+                player1 = sceneHandler.myArray[i];
             }
-            else if(i == 2 && sceneHandler.myArray[i-1].gameObject.name != "Player Prefab")
+            if(sceneHandler.myArray[i].playerIndex == 2)
             {
-                player2 = sceneHandler.myArray[i-1];
-                numOfPlayers = 2;
+                player2 = sceneHandler.myArray[i];
             }
-            else if(i == 3 && sceneHandler.myArray[i-1].gameObject.name != "Player Prefab")
+            if(sceneHandler.myArray[i].playerIndex == 3)
             {
-                player3 = sceneHandler.myArray[i-1];
-                numOfPlayers = 3;
+                player3 = sceneHandler.myArray[i];
             }
-            else if (i == 4 && sceneHandler.myArray[i-1].gameObject.name != "Player Prefab")
+            if (sceneHandler.myArray[i].playerIndex == 4)
             {
-                player4 = sceneHandler.myArray[i-1];
-                numOfPlayers = 4;
+                player4 = sceneHandler.myArray[i];
             }
         }
+        if (player1 != null)
+            numOfPlayers++;
+            if (player2 != null)
+                numOfPlayers++;
+                    if (player3 != null)
+                        numOfPlayers++;
+                            if (player4 != null)
+                                numOfPlayers++;
         if (numOfPlayers == 1)
         {
             player1UI.SetActive(true);
@@ -108,23 +153,26 @@ public class DirectorAI : MonoBehaviour
 
     IEnumerator powerUpGiverUI()
     {
-        float timeRemaining = 12f;
-        for (int i = 0; i <= 8; i++)
+        if(!stopEverything)
         {
-            text.text = "Next powerup in " + timeRemaining.ToString("F0") + "s";
-            timeRemaining -= 1.0f;
-            yield return new WaitForSeconds(1.0f);
+            float timeRemaining = 12f;
+            for (int i = 0; i <= 8; i++)
+            {
+                text.text = "Next powerup in " + timeRemaining.ToString("F0") + "s";
+                timeRemaining -= 1.0f;
+                yield return new WaitForSeconds(1.0f);
+            }
+            for (int i = 0; i <= 30; i++)
+            {
+                text.text = "Next powerup in " + timeRemaining.ToString("F1") + "s";
+                timeRemaining -= 0.1f;
+                yield return new WaitForSeconds(0.1f);
+            }
+            PowerUpGiver();
+            yield return new WaitForSeconds(1);
+            ChangeColor(myColors.colors[0]);
+            StartCoroutine(powerUpGiverUI());
         }
-        for(int i = 0; i <= 30; i++)
-        {
-            text.text = "Next powerup in " + timeRemaining.ToString("F1") + "s";
-            timeRemaining -= 0.1f;
-            yield return new WaitForSeconds(0.1f);
-        }
-        PowerUpGiver();
-        yield return new WaitForSeconds(1);
-        ChangeColor(myColors.colors[0]);
-        StartCoroutine(powerUpGiverUI());
     }
 
     void PowerUpGiver() // Director AI
@@ -142,7 +190,7 @@ public class DirectorAI : MonoBehaviour
             theScores[i] = scores[i].currentScore;
             playerScoresByOrder[i] = scores[i].currentScore;
         }
-        Array.Sort(theScores); // Then it's sorted from strongest (0) to weaker (>=1)
+        Array.Sort(theScores); // Then it's sorted from strongest (>0) to weaker (0)
         StartCoroutine(PowerUpGiverTwo());
     }
 
@@ -245,6 +293,12 @@ public class DirectorAI : MonoBehaviour
     {
         text.text = "Condition not met!";
         ChangeColor(myColors.colors[1]);
+    }
+
+    IEnumerator loadEnding()
+    {
+        yield return new WaitForSeconds(0.5f);
+        SceneManager.LoadSceneAsync("Ending", LoadSceneMode.Additive);
     }
 
     void PlayerOneGrowth()

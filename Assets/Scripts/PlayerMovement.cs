@@ -1,12 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Cinemachine;
 using TMPro;
-using Unity.VisualScripting;
-using JetBrains.Annotations;
-using DG.Tweening.Plugins;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -29,6 +24,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] ScoreScriptable playerFourStats;
     int scoreGained;
     int sizeGained;
+    bool stopEverything = false;
+    public int targetScore;
 
     private void Start()
     {
@@ -36,12 +33,15 @@ public class PlayerMovement : MonoBehaviour
         StartCoroutine(KeepTrying());
         playerCircle = GetComponent<SpriteRenderer>();
         playerCircle.enabled = true;
-        StartCoroutine(SetColor());
     }
 
     private void FixedUpdate()
     {
         rb.velocity = movement * speed;
+        if((playerOneStats.currentScore >= targetScore || playerTwoStats.currentScore >= targetScore || playerThreeStats.currentScore >= targetScore || playerFourStats.currentScore >= targetScore) && stopEverything == false)
+        {
+            stopEverything = true;
+        }
     }
 
     private void OnMove(InputValue input)
@@ -51,7 +51,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.name == "Dot(Clone)")
+        if (collision.gameObject.name == "Dot(Clone)" && stopEverything == false)
         {
             AddAgainToQueue(collision.gameObject);
             transform.localScale += new Vector3(0.1f, 0.1f, 0f);
@@ -77,7 +77,7 @@ public class PlayerMovement : MonoBehaviour
                 score.updateScoreAndSize();
             }
         }
-        else
+        else if(stopEverything == false)
         {
             if(collision.transform.localScale.x < transform.localScale.x)
             {
@@ -214,11 +214,5 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.position = Vector2.zero;
         }
-    }
-
-    IEnumerator SetColor()
-    {
-        yield return new WaitForSeconds(0.1f);
-        
     }
 }
