@@ -29,7 +29,7 @@ public class SceneHandler : MonoBehaviour
         setActive(player);
         setActive(dotSpawner);
         player.transform.position = Vector2.zero;
-        SceneManager.LoadSceneAsync("Gameplay UI", LoadSceneMode.Additive);
+        SceneManager.LoadSceneAsync("Gameplay UI 2", LoadSceneMode.Additive);
         //SceneManager.SetActiveScene(SceneManager.GetSceneByName("Dot Spawner"));
         Debug.Log("All scenes loaded");
     }
