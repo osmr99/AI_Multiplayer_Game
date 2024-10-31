@@ -55,6 +55,13 @@ public class PowerupUI : MonoBehaviour
             StartCoroutine(GrowthUI());
         }
 
+        if(UnityEngine.Input.GetKeyDown(KeyCode.I))
+        {
+            ChangeColor(Color.red);
+            ChangeText("Magnet");
+            StartCoroutine(MagnetUI());
+        }
+
     }
 
     void RngPowerup()
@@ -99,7 +106,7 @@ public class PowerupUI : MonoBehaviour
         float timeRemaining = 10.0f;
         for(int i = 0; i <= 100; i++)
         {
-            powerup.text = "Powerup: Speed Boost (" + timeRemaining.ToString("F1") + "s)";
+            powerup.text = "Powerup: Speed Boost\n(" + timeRemaining.ToString("F1") + "s)";
             timeRemaining -= 0.1f;
             yield return new WaitForSeconds(0.1f);
         }
@@ -111,7 +118,19 @@ public class PowerupUI : MonoBehaviour
         float timeRemaining = 5.0f;
         for (int i = 0; i <= 50; i++)
         {
-            powerup.text = "Powerup: Growth (" + timeRemaining.ToString("F1") + "s)";
+            powerup.text = "Powerup: Growth\n(" + timeRemaining.ToString("F1") + "s)";
+            timeRemaining -= 0.1f;
+            yield return new WaitForSeconds(0.1f);
+        }
+        ResetText();
+    }
+
+    IEnumerator MagnetUI()
+    {
+        float timeRemaining = 10.0f;
+        for (int i = 0; i <= 100; i++)
+        {
+            powerup.text = "Powerup: Magnet\n(" + timeRemaining.ToString("F1") + "s)";
             timeRemaining -= 0.1f;
             yield return new WaitForSeconds(0.1f);
         }

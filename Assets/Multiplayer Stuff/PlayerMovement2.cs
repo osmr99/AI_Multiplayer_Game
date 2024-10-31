@@ -59,6 +59,16 @@ public class PlayerMovement2 : MonoBehaviour
                 score = GameObject.Find("Player 2 UI").GetComponentInChildren<Score>();
                 score.updateScoreAndSize();
             }
+            if (playerIndex == 3)
+            {
+                score = GameObject.Find("Player 3 UI").GetComponentInChildren<Score>();
+                score.updateScoreAndSize();
+            }
+            if (playerIndex == 4)
+            {
+                score = GameObject.Find("Player 4 UI").GetComponentInChildren<Score>();
+                score.updateScoreAndSize();
+            }
 
 
         }

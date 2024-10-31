@@ -10,6 +10,7 @@ public class SceneHandler2 : MonoBehaviour
     static GameObject player2;
     static GameObject player3;
     static GameObject player4;
+    static GameObject directorAI;
     public ScoreScriptable score1;
     public ScoreScriptable score2;
     public ScoreScriptable score3;
@@ -23,6 +24,7 @@ public class SceneHandler2 : MonoBehaviour
         player2 = GameObject.Find("Player Prefab 2");
         player3 = GameObject.Find("Player Prefab 3");
         player4 = GameObject.Find("Player Prefab 4");
+        directorAI = GameObject.Find("Director AI");
         player1.SetActive(false);
         player2.SetActive(false);
         player3.SetActive(false);
@@ -43,10 +45,13 @@ public class SceneHandler2 : MonoBehaviour
         SceneManager.UnloadSceneAsync("Main Menu UI");
         setActive(dotSpawner);
         spawnPlayer(player1);
-        spawnPlayer(player2);
+        //spawnPlayer(player2);
+        //spawnPlayer(player3);
+        //spawnPlayer(player4);
         SceneManager.LoadSceneAsync("Gameplay UI 2", LoadSceneMode.Additive);
         //SceneManager.SetActiveScene(SceneManager.GetSceneByName("Dot Spawner"));
         //Debug.Log("All scenes loaded");
+        directorAI.GetComponent<DirectorAI>().TheStart();
     }
 
     static void setActive(GameObject name)
