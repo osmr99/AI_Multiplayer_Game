@@ -13,7 +13,6 @@ public class DirectorAI : MonoBehaviour
 
     public ScoreScriptable[] scores;
     public Dotcolors myColors;
-    Color targetColor;
     TMP_Text text;
     public int[] theScores;
     public int[] playerScoresByOrder;
@@ -88,10 +87,10 @@ public class DirectorAI : MonoBehaviour
         StartCoroutine(PowerUpGiverTwo());
     }
 
+    // Director AI TLDR - Biggest player gets speedboost, the others get growth
     IEnumerator PowerUpGiverTwo()
     {
         yield return new WaitForSeconds(0.05f);
-        // Director AI TLDR - Biggest player gets speedboost, the others get growth
         if (theScores.Length == 2 && theScores[0] != theScores[1]) // 2 Players playing
         {
             // 1 strongest, 0 weakest
@@ -107,66 +106,74 @@ public class DirectorAI : MonoBehaviour
             }
             else
             {
-                FailedCondition(); // If there's only 1 player on screen;
+                FailedCondition(); // If there's only 1 player on the screen;
             }
         }
-        else if (theScores.Length == 3) // 3 Players playing
+        else if (theScores.Length == 3 && theScores[0] != theScores[1] && theScores[0] != theScores[2] && theScores[1] != theScores[2]) // 3 Players playing
         {
             // 2 strongest, 1 average, 0 weakest
-            if (theScores[0] == playerScoresByOrder[0]) // Player's 1 score
+            if (theScores[2] == playerScoresByOrder[0]) // Player's 1 score
             {
                 PlayerOneSpeed();
                 PlayerTwoGrowth();
                 PlayerThreeGrowth();
             }
-            else if (theScores[0] == playerScoresByOrder[1]) // Player's 2 score
+            else if (theScores[2] == playerScoresByOrder[1]) // Player's 2 score
             {
                 PlayerOneGrowth();
                 PlayerTwoSpeed();
                 PlayerThreeGrowth();
             }
-            else
+            else if (theScores[2] == playerScoresByOrder[2]) // Player's 3 score
             {
                 PlayerOneGrowth();
                 PlayerTwoGrowth();
                 PlayerThreeSpeed();
+            }
+            else
+            {
+                FailedCondition(); // If there's only 1 player on the screen;
             }
         }
-        else if (theScores.Length == 4) // 4 Players playing
+        else if (theScores.Length == 4 && theScores[0] != theScores[1] && theScores[0] != theScores[2] && theScores[0] != theScores[3] && theScores[1] != theScores[2] && theScores[1] != theScores[3] && theScores[2] != theScores[3]) // 4 Players playing
         {
             // 3 strongest, 2 and 1 average, 0 weakest
-            if (theScores[0] == playerScoresByOrder[0]) // Player's 1 score
+            if (theScores[3] == playerScoresByOrder[0]) // Player's 1 score
             {
                 PlayerOneSpeed();
                 PlayerTwoGrowth();
                 PlayerThreeGrowth();
                 PlayerFourGrowth();
             }
-            else if (theScores[0] == playerScoresByOrder[1]) // Player's 2 score
+            else if (theScores[3] == playerScoresByOrder[1]) // Player's 2 score
             {
                 PlayerOneGrowth();
                 PlayerTwoSpeed();
                 PlayerThreeGrowth();
                 PlayerFourGrowth();
             }
-            else if (theScores[0] == playerScoresByOrder[2]) // Player's 3 score
+            else if (theScores[3] == playerScoresByOrder[2]) // Player's 3 score
             {
                 PlayerOneGrowth();
                 PlayerTwoGrowth();
                 PlayerThreeSpeed();
                 PlayerFourGrowth();
             }
-            else
+            else if (theScores[3] == playerScoresByOrder[3]) // Player's 4 score
             {
                 PlayerOneGrowth();
                 PlayerTwoGrowth();
                 PlayerThreeGrowth();
                 PlayerFourSpeed();
             }
+            else
+            {
+                FailedCondition(); // If there's only 1 player on the screen;
+            }
         }
         else
         {
-            FailedCondition();
+            FailedCondition(); // If there's only 1 player on the screen or if a player contains the score 0 and/or is respawning
         }
     }
 

@@ -936,8 +936,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1176627977}
   - component: {fileID: 1176627978}
+  - component: {fileID: 1176627979}
   m_Layer: 0
-  m_Name: Scene Handler
+  m_Name: Scene Handler And Multiplayer Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -974,6 +975,50 @@ MonoBehaviour:
   stats2: {fileID: 11400000, guid: 864bfe602cb86fb4da56a31eafbe35c6, type: 2}
   stats3: {fileID: 11400000, guid: 94005a12fee959c4dbafafb3c2202891, type: 2}
   stats4: {fileID: 11400000, guid: 66063139e6a1a884fab96e274ee7f135, type: 2}
+--- !u!114 &1176627979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1176627975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 621567455fd1c4ceb811cc8a00b6a1a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NotificationBehavior: 2
+  m_MaxPlayerCount: 4
+  m_AllowJoining: 1
+  m_JoinBehavior: 2
+  m_PlayerJoinedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_PlayerLeftEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_JoinAction:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Join
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 180c4fe7-0dd7-4b4b-b14a-2ce5848f89a3
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  m_PlayerPrefab: {fileID: 0}
+  m_SplitScreen: 0
+  m_MaintainAspectRatioInSplitScreen: 0
+  m_FixedNumberOfSplitScreens: -1
+  m_SplitScreenRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
 --- !u!1 &1756904587
 GameObject:
   m_ObjectHideFlags: 3
@@ -1191,7 +1236,7 @@ GameObject:
   - component: {fileID: 1874572632}
   - component: {fileID: 1874572633}
   m_Layer: 0
-  m_Name: Dot Spawner 2
+  m_Name: Dot Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1425,9 +1470,9 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 686376411}
-  - {fileID: 1176627977}
   - {fileID: 2146273296}
+  - {fileID: 1176627977}
+  - {fileID: 686376411}
   - {fileID: 1874572632}
   - {fileID: 86131410}
   - {fileID: 675901214}

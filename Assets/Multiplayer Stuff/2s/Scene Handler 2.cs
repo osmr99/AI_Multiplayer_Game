@@ -19,7 +19,7 @@ public class SceneHandler2 : MonoBehaviour
 
     private void Awake()
     {
-        dotSpawner = GameObject.Find("Dot Spawner 2");
+        dotSpawner = GameObject.Find("Dot Spawner");
         player1 = GameObject.Find("Player Prefab 1");
         player2 = GameObject.Find("Player Prefab 2");
         player3 = GameObject.Find("Player Prefab 3");

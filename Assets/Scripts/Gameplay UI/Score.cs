@@ -74,8 +74,21 @@ public class Score : MonoBehaviour
 
     public void ResetUI()
     {
-        score.transform.DOShakePosition(0.25f, 10, 50, 50);
-        size.transform.DOShakePosition(0.25f, 10, 50, 50);
+        score.transform.DOShakePosition(0.35f, 10, 50, 50);
+        StartCoroutine(RespawningTimerUI());
+    }
+
+    IEnumerator RespawningTimerUI()
+    {
+        score.text = "";
+        size.text = "";
+        float timeRemaining = 5.0f;
+        for (int i = 0; i <= 50; i++)
+        {
+            score.text = "Respawning in\n" + timeRemaining.ToString("F1") + "s";
+            timeRemaining -= 0.1f;
+            yield return new WaitForSeconds(0.1f);
+        }
         score.text = "Score: 0";
         size.text = "0";
     }
